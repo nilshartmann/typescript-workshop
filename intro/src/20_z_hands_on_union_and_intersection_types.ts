@@ -14,7 +14,7 @@ const purry: Cat = {
   name: "Purry", // cool
   meow() {
     console.log("meow");
-  }
+  },
 };
 
 // should not work
@@ -22,11 +22,8 @@ const brutus: Cat = {
   name: "Brutus", // not cool
   meow() {
     console.log("meow");
-  }
+  },
 };
-
-// 3. Schreibe eine Funktion "runCat", die sowohl eine Cat- als auch deinen neuen Untertyp als Parameter akzeptiert
-//    Wenn der Parameter "nur" eine Cat ist, gib mit console.log die Zeichenkette "slow cat" aus, andernfalls gib mit console.log den Wert von "topSpeed" aus.
 
 type CatAndMore = Cat & {
   topSpeed: number;
@@ -35,17 +32,28 @@ type CatAndMore = Cat & {
 const fastCat: CatAndMore = {
   name: "Molly",
   topSpeed: 10,
-  meow: () => console.log("woooof")
+  meow: () => console.log("woooof"),
 };
 
-// 3. Schreibe eine Funktion "runCat", die sowohl eine Cat- als auch deinen neuen Untertyp akzeptiert
-//     If it's "only" a Cat, conolse.log the string "slow cat" otherwise console.log the value of "topSpeed"
+class Tiger {
+  run() {
+    console.log("runnnn........");
+  }
+}
 
-function runCat(cat: Cat | CatAndMore) {
-  if ("topSpeed" in cat) {
+// 3. Schreibe eine Funktion "runCat", die sowohl eine Cat- als auch deinen neuen Untertyp als Parameter akzeptiert
+//    Wenn der Parameter "nur" eine Cat ist, gib ihren Namen aus, andernfalls gib mit console.log den Wert von "topSpeed" aus.
+//
+// 4. Erweiter die Funtkion "runCat", so dass diese auch Instanzen von "Tiger" verarbeiten kann
+//   Wenn der Parameter eine Instanz von Tiger ist, rufe run auf
+
+function runCat(cat: Cat | CatAndMore | Tiger) {
+  if (cat instanceof Tiger) {
+    console.log(cat.run());
+  } else if ("topSpeed" in cat) {
     console.log(cat.topSpeed);
   } else {
-    console.log("slow cat");
+    console.log(cat.name);
   }
 }
 

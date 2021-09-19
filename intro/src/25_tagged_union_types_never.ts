@@ -19,5 +19,5 @@ function translate(msg: Translate) {
   // what happens if we extend possible Translations?
 }
 
-// also called discriminating unions
-// https://www.typescriptlang.org/docs/handbook/unions-and-intersections.html#discriminating-unions
+// Info (tagged union types werden auch "discriminating unions" genannt):
+// https://www.typescriptlang.org/docs/handbook/2/narrowing.html#discriminated-unions

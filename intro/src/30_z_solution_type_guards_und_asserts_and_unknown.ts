@@ -1,33 +1,75 @@
 export default undefined;
 
-type Something = {
-  type: string;
-  amount: number;
+// AUFGABE:
+//
+
+type SimpleMessage = {
+  body: string;
 };
 
-function getSomething(what: string): unknown {
-  if (what === "beer") {
-    return {
-      type: "bottles",
-      amount: 10
-    };
-  } else {
-    return "n/a";
+type Message = string | SimpleMessage;
+
+class InvalidMessageError extends Error {
+  constructor(public invalidMessage: any) {
+    super("Invalid Message received!");
   }
 }
 
-// const what = 'ale';
-const what = "beer";
-const something = getSomething(what);
-if (isAvailable(something)) {
-  console.log(`We have ${something.amount} ${something.type} of ${what}`);
-} else {
-  console.log(`We have no ${what}`);
+/**
+ * Eine (Callback-)Funktion, die eine Message entgegen nimmt, und nichts zurückliefert
+ */
+type MessageHandler = (m: Message) => void;
+
+function onMessage(message: unknown, handleMessage: MessageHandler) {
+  assertValidMessage(message);
+
+  // Hier sollte es keinen Compile-Fehler geben
+  handleMessage(message);
 }
 
-function isAvailable(candidate: any): candidate is Something {
-  return typeof candidate === "object" && candidate.type;
+function assertValidMessage(message: any): asserts message is Message {
+  if (typeof message === "string") {
+    return;
+  }
+
+  if ("body" in message) {
+    return;
+  }
+
+  throw new InvalidMessageError(message);
 }
 
-// https://www.typescriptlang.org/play?q=241#example/unknown-and-never
-// https://www.typescriptlang.org/play?q=29#example/type-guards
+function loggingMessageHandler(message: Message) {
+  if (isSimpleMessage(message)) {
+    console.log(message.body);
+  }
+  console.log(message);
+}
+
+function isSimpleMessage(message: Message): message is SimpleMessage {
+  return typeof message === "object" && "body" in message;
+}
+
+// Error-Handler, Variante 1: unknown
+try {
+  onMessage("", loggingMessageHandler);
+} catch (err) {
+  if (err instanceof InvalidMessageError) {
+    console.log(err.invalidMessage);
+  }
+}
+
+// Error-Handler, Variante 2: any
+try {
+  onMessage("", loggingMessageHandler);
+} catch (err: any) {
+  // Praktisch: keine Prüfung notwendig, aber...
+  //  ...haben wir hier wirklich einen InvalidMessageError?
+  console.log(err.invalidMessage);
+}
+
+// Infos:
+// Unknown Type: https://www.typescriptlang.org/docs/handbook/2/functions.html#unknown
+// Type Predicats: https://www.typescriptlang.org/docs/handbook/2/narrowing.html#using-type-predicates
+// Assertion Functions: https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-7.html#assertion-functions
+// Beispiel Type Guards: https://www.typescriptlang.org/play?q=29#example/type-guards

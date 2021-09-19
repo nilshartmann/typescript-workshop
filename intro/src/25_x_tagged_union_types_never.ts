@@ -38,5 +38,5 @@ function invalidTranslation(msg: never) {
   throw new Error("Invalid Msg Object!");
 }
 
-// also called discriminating unions
+// Info (tagged union types werden auch "discriminating unions" genannt):
 // https://www.typescriptlang.org/docs/handbook/2/narrowing.html#discriminated-unions

@@ -5,23 +5,24 @@ type SayHello = {
   msg: string;
 };
 
-class SayGoodbye {
-  goodbye() {
-    return "goodbye";
-  }
+interface SayGoodbye {
+  action: "SAY_GOODBYE";
+  goodbye(): string;
 }
 
 // add this to say-Signature to see invalidAction is showing an error
-type SayGoodMorning = {};
+type SayGoodMorning = {
+  action: "SAY_GOOD_MORNING";
+};
 
-function say(action: SayHello | SayGoodbye) {
+function say(action: SayHello | SayGoodbye | SayGoodMorning) {
   //   Implementiere diese Funktion:
   //  -------------------------------
-  if (action instanceof SayGoodbye) {
+  if (action.action === "SAY_GOODBYE") {
     //   2. wenn mit einer Instanz der SayGoodybe-Klasse aufgerufen wird, rufe darauf goodbye() auf
     //      und gib den Rückgabewert von 'goodbye' zurück
     return action.goodbye();
-  } else if ("msg" in action) {
+  } else if (action.action === "SAY_HELLO") {
     //   1. wenn die Funktion mit einem 'SayHello'-Objekt aufgerufen wird, gib dessen 'msg' zurück
     return action.msg;
   }

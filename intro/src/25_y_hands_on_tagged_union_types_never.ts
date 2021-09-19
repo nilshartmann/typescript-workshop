@@ -1,17 +1,15 @@
 export default undefined;
 
 // TASK 🤔:
-// Implementiere die 'say'-Funktion (siehe unten)
+// Erweitere die beiden Typen (SayHello und SayGoodbye), um
+// ein gemeinsames Property, mit dem Du sie unterscheiden kannst
 
 type SayHello = {
-  action: "SAY_HELLO";
   msg: string;
 };
 
-class SayGoodbye {
-  goodbye() {
-    return "goodbye";
-  }
+interface SayGoodbye {
+  goodbye(): string;
 }
 
 type SayGoodMorning = {};
@@ -22,7 +20,7 @@ function say(action: SayHello | SayGoodbye) {
   //
   //   1. wenn die Funktion mit einem 'SayHello'-Objekt aufgerufen wird, gib dessen 'msg' zurück
   //
-  //   2. wenn mit einer Instanz der SayGoodybe-Klasse aufgerufen wird, rufe darauf goodbye() auf
+  //   2. wenn mit einem der SayGoodMorning aufgerufen wird, rufe darauf goodbye() auf
   //      und gib den Rückgabewert von 'goodbye' zurück
   //
   //   In allen anderen Fällen wirf einen Error (throw new Error("Boom")), ABER:
