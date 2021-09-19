@@ -6,7 +6,10 @@
     <title>React Training</title>
 
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui"
@@ -20,49 +23,66 @@
       <!-- Any section element inside of this container is displayed as a slide -->
       <div class="slides">
         <section data-state="title">
-          <h2 class="title" style="font-size: 7rem;">
+          <h2 class="title" style="font-size: 7rem">
             <b>TypeScript</b>
           </h2>
 
           <h4>
             <span class="transparent-bg">
-              <a href="http://nilshartmann.net" target="_blank">Nils Hartmann</a> |
-              <a href="http://twitter.com/nilshartmann" target="_blank">@nilshartmann</a>
+              <a href="http://nilshartmann.net" target="_blank"
+                >Nils Hartmann</a
+              >
+              |
+              <a href="http://twitter.com/nilshartmann" target="_blank"
+                >@nilshartmann</a
+              >
             </span>
           </h4>
 
-          <p style="margin-top: 4rem;"></p>
+          <p style="margin-top: 4rem"></p>
           <div>
             <h3><span class="transparent-bg">Slides</span></h3>
             <p>
-              <span class="transparent-bg">Lokal: 2021_07_13_react_typescript.html</span>
+              <span class="transparent-bg"
+                >Lokal: 2021_07_13_react_typescript.html</span
+              >
             </p>
           </div>
         </section>
         <section>
           <h2>Nils Hartmann</h2>
           <p>
-            <a href="https://nilshartmann.net" target="_blank">https://nilshartmann.net</a> /
-            <a href="http://twitter.com/nilshartmann" target="_blank">@nilshartmann</a>
+            <a href="https://nilshartmann.net" target="_blank"
+              >https://nilshartmann.net</a
+            >
+            /
+            <a href="http://twitter.com/nilshartmann" target="_blank"
+              >@nilshartmann</a
+            >
           </p>
-          <p><em>Freiberuflicher Software-Entwickler, Berater und Trainer aus Hamburg</em></p>
+          <p>
+            <em
+              >Freiberuflicher Software-Entwickler, Berater und Trainer aus
+              Hamburg</em
+            >
+          </p>
 
-          <div style="display: flex; justify-content: center;">
+          <div style="display: flex; justify-content: center">
             <div>
               <p>Java</p>
               <p>JavaScript, TypeScript</p>
               <p>React</p>
               <p>Single-Page-Applications</p>
               <p>GraphQL</p>
-              <p style="margin-top: 20px;">
+              <p style="margin-top: 20px">
                 <a href="https://reacttraining.dev">Schulungen und Workshops</a>
               </p>
               <p>Alle Dienstleistungen <b>auch online!</b></p>
             </div>
-            <div style="margin-left: 15px;">
+            <div style="margin-left: 15px">
               <a href="https://reactbuch.de"
                 ><img
-                  style="max-height: 450px;"
+                  style="max-height: 450px"
                   src="slides/images/react-buch-v2.jpg"
                 /><br />https://reactbuch.de</a
               >
@@ -80,7 +100,10 @@
         <section>
           <h2>Einführung: Die Sprache TypeScript</h2>
           <p class="fragment">
-            <em>TypeScript is a superset of JavaScript that compiles to plain JavaScript </em>(
+            <em
+              >TypeScript is a superset of JavaScript that compiles to plain
+              JavaScript </em
+            >(
             <a href="http://www.typescriptlang.org/" target="_blank"
               >http://www.typescriptlang.org/</a
             >)
@@ -99,14 +122,18 @@
         <section>
           <h3>TypeScript Grundlagen</h3>
           <p>Typ-Angaben werden hinter einen Bezeichner geschrieben</p>
-          <pre class="fragment"><code class="typescript line-numbers" contenteditable data-trim>
+          <pre
+            class="fragment"
+          ><code class="typescript line-numbers" contenteditable data-trim>
   // Variablen können Typ-Informationen bekommen
   let foo: string;
   foo = 'yo';
   // Error: number: This type is incompatible with string
   foo = 10;
                  </code></pre>
-          <pre class="fragment"><code class="typescript line-numbers" contenteditable data-trim>
+          <pre
+            class="fragment"
+          ><code class="typescript line-numbers" contenteditable data-trim>
   // Funktionen
   function sayIt(what: string): string {
     return `Saying: ${what}`;
@@ -116,7 +143,9 @@
   sayIt(10); // error
   </code></pre>
 
-          <pre class="fragment"><code class="typescript line-numbers" contenteditable data-trim>
+          <pre
+            class="fragment"
+          ><code class="typescript line-numbers" contenteditable data-trim>
   // Arrow Funktionen
   const sayIt = (what: string): string => `Saying: ${what}`;
   
@@ -128,7 +157,9 @@
 
         <section>
           <h2>Eingebaute Typen</h2>
-          <pre class="fragment"><code class="typescript line-numbers" contenteditable data-trim>
+          <pre
+            class="fragment"
+          ><code class="typescript line-numbers" contenteditable data-trim>
   // string
   let city: string = 'Hamburg';
   
@@ -147,9 +178,32 @@
   function log(s: string): void { /* ... */ }
               </code></pre>
         </section>
+
+        <section>
+          <h2>String Literal Types</h2>
+          <p>Beispiel: String Aufzählungstyp</p>
+          <pre><code data-trim contenteditable class="line-numbers typescript" data-leftpad>
+// Beispiel:             
+type View = "POST_LIST" | "POST_EDITOR";
+
+const s:View = "POST_LIST"; // OK
+const t:View = "POST_LISTE" // FEHLER
+
+function setView(v: VIEW) {
+    if (v === "POST_LIST") { ... } // ok
+    if (v === "POST_LISTE") { ... } // error: immer false
+}
+
+setView("POST_LIST"); //OK
+setView("POST_LISTE"); // ERROR
+          </code></pre>
+        </section>
+
         <section>
           <h2>Eingebaute Typen: any und unknown</h2>
-          <pre class="fragment"><code class="typescript line-numbers" contenteditable data-trim>
+          <pre
+            class="fragment"
+          ><code class="typescript line-numbers" contenteditable data-trim>
   // any: kann alle Typen aufnehmen, Typ-Prüfung ist ausgeschaltet
   let theUnknown: any = 'Who cares';
   theUnknown = 666; // ok
@@ -162,7 +216,9 @@
         </section>
         <section>
           <h2>Eingebaute Typen: any und unknown</h2>
-          <pre class="fragment"><code class="typescript line-numbers" contenteditable data-trim>
+          <pre
+            class="fragment"
+          ><code class="typescript line-numbers" contenteditable data-trim>
   // unknown: kann ebefalls alle Typen aufnehmen, erzwingt aber vor der Verwendung Typ-Prüfung
   function loadData(): unknown { return "" // ok }
   let b = loadData(); 
@@ -175,13 +231,17 @@
         </section>
         <section>
           <h2>Typen können abgeleitet (inferred) werden</h2>
-          <pre class="fragment"><code class="typescript line-numbers" contenteditable data-trim>
+          <pre
+            class="fragment"
+          ><code class="typescript line-numbers" contenteditable data-trim>
   let city = 'Hamburg'; // city ist ein String
   
   city = 42;
   // Fehler: [ts] Type '42' is not assignable to type 'string'.
   </code></pre>
-          <pre class="fragment"><code class="typescript line-numbers" contenteditable data-trim>
+          <pre
+            class="fragment"
+          ><code class="typescript line-numbers" contenteditable data-trim>
   // Explizite Angabe eines Types (parameter)
   // und abgeleiteter Typ (Return Type der Funktion)
   
@@ -199,8 +259,8 @@
         <section>
           <h2>Type Check ausschalten</h2>
           <p>
-            Mit <code>@ts-ignore</code> (als Kommentar) kann wird die Überprüfung der nächsten Zeile
-            ausgeschaltet:
+            Mit <code>@ts-ignore</code> (als Kommentar) kann wird die
+            Überprüfung der nächsten Zeile ausgeschaltet:
           </p>
           <pre><code class="typescript line-numbers" contenteditable data-trim>
   let city:string = "Hamburg";
@@ -211,14 +271,17 @@
   city = 20259; // ok                
   </code></pre>
           <p class="fragment">
-            Nützlich in corner cases, die nur schwer mit TypeScript abbildbar sind oder bei
-            Migration
+            Nützlich in corner cases, die nur schwer mit TypeScript abbildbar
+            sind oder bei Migration
           </p>
         </section>
         <section>
           <h2>null und undefined</h2>
           <div class="fragment">
-            <p><code>null</code> muss explizit zugelassen werden <em>(strictNullChecks</em>):</p>
+            <p>
+              <code>null</code> muss explizit zugelassen werden
+              <em>(strictNullChecks</em>):
+            </p>
             <pre><code class="typescript line-numbers" contenteditable data-trim>
   let city:string = null; //Type 'null' is not assignable to type 'string'.
   
@@ -226,7 +289,9 @@
               </code></pre>
           </div>
           <div class="fragment">
-            <p><code>undefined</code> muss ebenfalls explizit zugelassen werden:</p>
+            <p>
+              <code>undefined</code> muss ebenfalls explizit zugelassen werden:
+            </p>
             <pre><code class="typescript line-numbers" contenteditable data-trim>
     let city:string = undefined; //Type 'undefined' is not assignable to type 'string'.
     
@@ -236,10 +301,13 @@
           </div>
           <div class="fragment">
             <p>
-              Optionale Parameter können mit ? gekennzeichnet werden (erlauben dann auch
+              Optionale Parameter können mit ? gekennzeichnet werden (erlauben
+              dann auch
               <code>undefined</code>)
             </p>
-            <pre class="fragment"><code class="typescript line-numbers" contenteditable data-trim>
+            <pre
+              class="fragment"
+            ><code class="typescript line-numbers" contenteditable data-trim>
   function greet(name: string, greeting?: string) {
     console.log(`${greeting || 'Hello'}, {name}`);
   }
@@ -258,8 +326,8 @@
         <section>
           <h2>Eigene Typen</h2>
           <p>
-            Mit <code>interface</code> und <code>type</code>können eigene Typen (Objekt-Strukturen)
-            definiert werden:
+            Mit <code>interface</code> und <code>type</code>können eigene Typen
+            (Objekt-Strukturen) definiert werden:
           </p>
 
           <pre><code data-trim contenteditable class="line-numbers typescript" data-leftpad>
@@ -291,7 +359,10 @@
 
         <section>
           <h2>Eigene Typen II</h2>
-          <p>Eigene Objekt-Typen können sowohl "Attribute" als auch Funktionen enthalten:</p>
+          <p>
+            Eigene Objekt-Typen können sowohl "Attribute" als auch Funktionen
+            enthalten:
+          </p>
           <pre><code data-trim contenteditable class="line-numbers typescript" data-leftpad>
             // Komplexer Typ
             type Person {
@@ -319,6 +390,29 @@
             }
                            </code></pre>
         </section>
+
+        <section>
+          <h3>Intersection Types</h3>
+          <p>Typen können erweitert werden:</p>
+
+          <pre class="fragment"><code class="javascript">
+type Person = {
+  firstname: string;
+  lastname: string;
+}            
+
+type Employee = Person & {
+  salary: number
+}
+
+const e:Employee = {
+  firstname: "Klaus",
+  lastname: "Meier",
+  salary: 60000
+}
+          </code></pre>
+        </section>
+
         <section>
           <h2>Union Types</h2>
           <p>Variablen, Parameter etc. können mehr als einen Typ annehmen:</p>
@@ -346,9 +440,54 @@ printNameOrTitle({label: "Save"}); // ERR
     
           </code></pre>
         </section>
+
+        <!-- ============================================================================= -->
+        <section>
+          <h3>Type Guards</h3>
+          <p class="fragment">
+            Durch Type Guards können Typen "eingeengt" werden, aus einer Menge
+            von Typen werden werden Typen eingeschlossen bzw. ausgeschlossen
+          </p>
+          <p class="fragment">
+            Type Guards sind in der Regel <code>if</code>-Abfragen, mit denen
+            Eigenschaften <em>zur Laufzeit</em> überprüft werden. TypeScript
+            interpretiert diese Informationen jedoch schon zur
+            <em>Compilezeit</em>
+          </p>
+          <p>
+            Operatoren, die als Type Guard fungieren: <code>in</code>,
+            <code>typeof</code>, <code>instanceof</code>
+          </p>
+
+          <pre class="fragment"><code class="javascript">
+                const Person = { lastname: string; age: number }
+                const Animal = { species: string; name: string };
+
+                function x(obj: Person|Animal) {
+                  if ("lastname" in obj) { /* hier Person */ }
+                }
+              </code></pre>
+          <pre class="fragment"><code class="javascript">
+                class Person { ... }
+                class Animal { ... };
+
+                function x(obj: Person|Animal) {
+                  if (obj instanceof Person) { /* hier Person */ }
+                }
+              </code></pre>
+          <p>
+            <a
+              href="https://www.typescriptlang.org/docs/handbook/2/narrowing.html"
+              >Doku</a
+            >
+          </p>
+        </section>
+
         <section>
           <h2>Type Guards</h2>
-          <p>Durch einen Type Guard können Typen "eingeengt" werden</p>
+          <p>
+            Funktionen können ausdrücken, dass sie eine Typ-Auswahl darstellen
+          </p>
           <pre><code data-trim contenteditable class="line-numbers typescript" data-leftpad>
 type Person = { name: string };
 type Movie = { title: string };
@@ -366,9 +505,19 @@ function printNameOrTitle(obj: Person | Movie) {
 }
     
           </code></pre>
+          <p class="fragment">
+            <a
+              href="https://www.typescriptlang.org/docs/handbook/2/narrowing.html#using-type-predicates"
+              >Doku: Type Predicates</a
+            >
+          </p>
         </section>
         <section>
           <h2>Type Assertions</h2>
+          <p>
+            Ähnlich wie Type Predicates: wenn die Funktion zurückkehrt, weiß
+            TypeScript, dass der übergebene Parameter vom erwarteten Typ ist
+          </p>
           <pre><code data-trim contenteditable class="line-numbers typescript" data-leftpad>
 type Person = { name: string };
 type Movie = { title: string };
@@ -390,43 +539,177 @@ function printTitle(hopefullyAMovie: any) {
     
           </code></pre>
         </section>
+
+        <!-- ============================================================================= -->
+
+        <!-- ============================================================================= -->
         <section>
-          <h2>String Literal Types</h2>
-          <p>Beispiel: String Aufzählungstyp</p>
-          <pre><code data-trim contenteditable class="line-numbers typescript" data-leftpad>
-// Beispiel:             
-type View = "POST_LIST" | "POST_EDITOR";
-
-const s:View = "POST_LIST"; // OK
-const t:View = "POST_LISTE" // FEHLER
-
-function setView(v: VIEW) {
-    if (v === "POST_LIST") { ... } // ok
-    if (v === "POST_LISTE") { ... } // error: immer false
-}
-
-setView("POST_LIST"); //OK
-setView("POST_LISTE"); // ERROR
-          </code></pre>
+          <h3>Teil 2</h3>
+          <h2>Laufzeit-Prüfungen</h2>
         </section>
 
         <section>
-          <h2>Übung: Hello, TypeScript!</h2>
-          <h3>
-            <em>Mach dich mit den Grundzügen der Sprache TypeScript vertraut</em>
-          </h3>
+          <h3>TypeScript: Nur zur Compile-Zeit!</h3>
+          <ul>
+            <li>
+              Beim Compilieren mit <code>tsc</code> überprüft TypeScript die
+              korrekte Verwendung der Typen und <em>entfernt diese</em> dann aus
+              dem Source Code
+            </li>
+            <li>
+              Das bedeutet: zur Laufzeit stehen die Typ-Informationen nicht zur
+              Verfügung.
+            </li>
+            <li>
+              Type Guards funktionieren auch zur Laufzeit, weil sie mit gültigem
+              JavaScript geschrieben sind
+            </li>
+          </ul>
+        </section>
 
-          <ol class="x-list">
-            <li>Öffne den TypeScript Playground im Browser (den Link gibts per Chat)</li>
-            <li>Link zu den Slides als Referenz gibt's ebenfalls im Chat</li>
+        <!-- ============================================================================= -->
+        <section>
+          <h3>Validierung von Objekten</h3>
+          <ul>
             <li>
-              Bearbeite die Datei, so dass keine Compile-Fehler mehr vorhanden sind, TODOs siehe
-              dort
+              Alle Objekte, die zur Laufzeit verarbeitet werden, können von den
+              erwarteten (mit TypeScript) beschriebenen Typen abweichen
+            </li>
+            <li>Beispiel: Lesen von Daten über eine HTTP API</li>
+            <li>
+              Es gibt mehrere Bibliotheken, mit denen Objekte zur Laufzeit
+              validiert werden können
             </li>
             <li>
-              Lösung in <code>blog-example/material/ts-intro/01_solution_hello_typescript.ts</code>
+              Beispiele:
+              <a href="https://joi.dev/">Joi</a> (möglicherweiste die
+              populärste, ursprünglich aus dem
+              <a href="https://hapi.dev/">Hapi Projekt</a>),
+              <a href="https://github.com/jquense/yup">Yup</a> und
+              <a href="https://github.com/colinhacks/zod">Zod</a> (bester
+              TypeScript-Support)
             </li>
-          </ol>
+            <li>
+              Mit diesen Bibliotheken werden Objekt-Strukturen in JavaScript
+              beschrieben - die Informationen sind dann zur Laufzeit vorhanden -
+              fehlen allerdings zur Compile-Zeit
+            </li>
+            <li>
+              Zod erlaubt es, aus den JavaScript-Beschreibungen auch TypeScript
+              Typen zu erzeugen
+            </li>
+          </ul>
+        </section>
+
+        <!-- ============================================================================= -->
+        <section>
+          <h3>Zod</h3>
+
+          <p>Beispiel: Beschreiben von Objekten</p>
+
+          <pre class="fragment"><code class="javascript">
+import { z } from "zod";
+
+const Employee = z.object({
+  name: z.string(),
+  age: z.number().optional(),
+  salary: z.number(),
+});
+          </code></pre>
+          <p class="fragment">
+            Das zurückgelieferte Objekt verfügt über eine
+            <code>parse</code>-Funktion, die ein beliebiges Objekt überprüft,
+            und einen Error wirft, wenn das Objekt nicht auf das definierte
+            Schema passt:
+          </p>
+          <pre class="fragment"><code class="javascript">
+const e = parse({
+  name: "Klaus",
+  age: 32,
+  salary: 60000
+})               // OK
+
+const p = parse({
+  name: "Joe",
+  salary: "122300EUR"
+}) // ERR: salary hat falschen Typen!
+            </code></pre>
+        </section>
+
+        <!-- ============================================================================= -->
+        <section>
+          <h3>Zod</h3>
+          <ul>
+            <li class="fragment">
+              Die <code>parse</code>-Funktion dient in TypeScript auch als Type
+              Guard/Type Predicate-Funktion!
+            </li>
+            <li class="fragment">
+              TypeScript weiß danach, dass das zurückgelieferte Objekte genauso
+              aussieht, wie mit <code>z.object</code> beschrieben
+            </li>
+          </ul>
+
+          <pre class="fragment"><code class="javascript">
+const e = parse({
+  name: "Klaus",
+  age: 32,
+  salary: 60000
+})    
+
+e.name; // OK;
+e.lastname; // TypeScript: Compile-Error! (lastname nicht in Employee vorhanden)
+          </code></pre>
+          <ul>
+            <li class="fragment">
+              Den TypeScript-Typen kann man explizit abfragen, und dann z.B. als
+              Typ für ein Funktionsargument verwenden
+            </li>
+          </ul>
+
+          <pre class="fragment"><code class="javascript">
+const Employee = z.object({...});
+type IEmployee = z.infer&lt;typeof Employee>;
+  
+function increaseSalary(employee: IEmployee) {
+  employee.salary; // OK
+}  
+          </code></pre>
+        </section>
+
+        <!-- ============================================================================= -->
+        <section>
+          <h3>Zod: Constraints</h3>
+          <ul>
+            <li class="fragment">
+              Es können nicht nur Typen angegeben werden, diese können auch mit
+              Regeln versehen werden
+            </li>
+          </ul>
+
+          <pre class="fragment"><code class="javascript">
+const Person = z.object({
+  lastname: z.string().min(1),
+  email: z.string().email().optional(),
+  age: z.number().gte(18),
+  profession: z.string().nullable()
+})            
+          </code></pre>
+          <ul>
+            <li class="fragment">
+              Wenn beim parsen gegen die Regeln verstoßen wird, werden
+              entsprechende Fehler geworfen
+            </li>
+          </ul>
+
+          <pre class="fragment"><code class="javascript">
+Person.parse({
+  lastname: "Meier",
+  email: "klaus@meier.de",
+  age: 17, 
+  profession: null
+})     // ERR: age not greater-or-equal-than 18         
+          </code></pre>
         </section>
       </div>
     </div>

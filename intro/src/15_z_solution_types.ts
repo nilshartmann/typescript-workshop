@@ -34,6 +34,7 @@ const localPrinterOptions: PrinterOptions = {
 Printer(localPrinterOptions);
 
 // Info:
+// Everyday types: https://www.typescriptlang.org/docs/handbook/2/everyday-types.html
 // Object Types: https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#object-types
 // Type Aliase: https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#type-aliases
 // Interfaces: https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#interfaces
