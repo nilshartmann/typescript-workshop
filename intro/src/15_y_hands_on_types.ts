@@ -9,20 +9,13 @@ export default undefined;
 //   Variable mehr auftreten
 //   Du PrinterOptions als Interface oder Type Alias definieren.
 //
-//   Zusatz:
-//     - Füge PrinterOptions eine weitere optionale! Eigenschaft hinzu, z.B. "color"
-//       Gib diese Eigenschaft - falls gesetzt - in dem console.log-Statement in Printer
-//       mit aus
+//
 // -----------------------------------------------------------------------------------------
+
 function Printer(options: PrinterOptions) {
   console.log(`Printing on device ${options.device.toUpperCase()}`);
 
   options.onPrintFinished(true);
-}
-
-interface PrinterOptions {
-  device: string;
-  onPrintFinished(result: boolean): void;
 }
 
 // Define here the type PrinterOptions (as 'type' or 'interface')
