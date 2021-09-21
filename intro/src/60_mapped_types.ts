@@ -1,3 +1,6 @@
+// [P in keyof OBJECT]
+// type P1 = keyof Person; // name | age
+// type X = Person[name] // string
 export default undefined;
 
 type Person = {

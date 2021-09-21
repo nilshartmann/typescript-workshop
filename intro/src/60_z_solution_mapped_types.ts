@@ -32,5 +32,3 @@ const klaus: Person = {
 
 // https://www.typescriptlang.org/docs/handbook/utility-types.html
 // https://www.typescriptlang.org/play?q=414#example/mapped-types
-// https://www.typescriptlang.org/docs/handbook/2/objects.html#intersection-types
-// https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#differences-between-type-aliases-and-interfaces

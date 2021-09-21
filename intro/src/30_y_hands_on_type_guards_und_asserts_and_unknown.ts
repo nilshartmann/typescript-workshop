@@ -61,6 +61,22 @@ try {
   // wenn Du den Typ als 'any' angibst
 }
 
+// AUFGABE:
+// -------------------------------------
+//
+// Hier haben wir eine Liste, die aus Message-Objekten
+//  besteht. Mit dem folgenden 'filter'-Aufruf erzeugen wir
+//  eine Liste, in der nur die SimpleMessage-Objekte vorhanden
+//  sein sollen.
+//  Kannst Du die Funktion so anpassen, dass Du 'simpleMessages'
+//    als SimpleMessage[] deklarieren kannst, ohne dass es einen
+//    Compile-Fehler gibt?
+const messages: Message[] = [];
+
+const simpleMessages = messages.filter(
+  (message) => typeof message !== "string"
+);
+
 // Infos:
 // Unknown Type: https://www.typescriptlang.org/docs/handbook/2/functions.html#unknown
 // Type Predicats: https://www.typescriptlang.org/docs/handbook/2/narrowing.html#using-type-predicates
