@@ -48,21 +48,6 @@ app.post<LoginRequestParams, LoginResponse, LoginRequestBody>(
   }
 );
 
-import { z } from "zod";
-
-const User = z.object({
-  username: z.string(),
-  login: z.string(),
-  age: z.number(),
-  favorites: z.array(z.string()).optional(),
-});
-
-const u = {
-  username: "Klaus",
-};
-
-const user = User.parse(u);
-
 app.listen(PORT, () => {
   console.log("Running server on port %s", PORT);
 });
